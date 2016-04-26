@@ -1,0 +1,53 @@
+<include file="Public/head"/>
+<div class="row main">
+<div class="container">
+    <div class="col-md-2">
+        <ul class="list-unstyled">
+            <li class="box">burlywood</li>
+            <li class="box">paleturquoise</li>
+            <li class="box">lightgoldenrodyellow</li>
+            <li class="box">palegreen</li>
+            <li class="box">plum</li>
+        </ul>
+    </div>
+    <div class="col-md-10 col-right">
+        <div class="box2">
+            <div class="button button_off">
+                <span class="top"></span>
+                <span class="middle"></span>
+                <span class="bottom"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+	<script>
+        var box_in = $('.box2');
+        $('.box').each(function(){
+            var color = $(this).html();
+            $(this).css('backgroundColor',color);
+        });
+		$('.box').click(function(){
+            var color = $(this).css('backgroundColor');
+            box_in.css('backgroundColor',color);
+            box_in.removeClass('box-on');
+            box_in.addClass('box-on');
+		});
+        $('.close').click(function(){
+            box_in.removeClass('box-on');
+        });
+
+        /*可变的栏目和关闭按钮*/
+        $('.button').bind('click',function(){
+            if($(this).hasClass('button_close')){
+                $(this).removeClass('button_close');
+                $(this).addClass('button_off');
+            }
+            else{
+                $(this).removeClass('button_off');
+                $(this).addClass('button_close');
+            }
+        });
+	</script>
+<include file="Public/foot"/>
