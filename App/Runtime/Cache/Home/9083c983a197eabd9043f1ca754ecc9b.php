@@ -1,4 +1,71 @@
-<include file="Public/head"/>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>myblog2</title>
+    <!-- bootstrap start -->
+    <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Public/css/font-awesome.min.css">
+    <!--[if IE 7]>
+        <link rel="stylesheet" href="/Public/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <script type="text/javascript" src="/Public/js/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Public/js/holder.min.js"></script>
+    <!-- bootstrap end -->
+    <link rel="stylesheet" href="/Public/css/style.css">
+	<link rel="stylesheet" href="/Public/css/test.css">
+	<link rel="stylesheet" href="/Public/css/common.css">
+    <script type="text/javascript" src="/Public/js/common.js"></script>
+</head>
+<body>
+<div class="toolbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/home/index/index"><i class="icon-globe icon-2x col-xs-1"></i>SefaZh</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/home/index/index">首页</a></li>
+                        <li><a href="/home/blog/index">列表</a></li>
+                        <li><a href="#contact">标签云</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">其他 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#Action">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="写点什么...">
+                        </div>
+                        <button type="submit" class="btn btn-default">查询</button>
+                    </form>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="blank" style="width: 100%; height: 51px;"></div>
 <div class="main_body">
 <div class="container">
     <div class="main col-md-8">
@@ -166,4 +233,7 @@
 </div>
 </div>
 
-<include file="Public/foot"/>
+
+<a href="#" onclick="gotoTop(0.05, 10);return false;" class="totop"></a>
+</body>
+</html>
