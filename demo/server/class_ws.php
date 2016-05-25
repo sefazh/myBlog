@@ -1,7 +1,7 @@
 <?php
 class Ws{
-	private $host = '127.0.0.1';
-	private $port = 8090;
+	private $host = '172.18.14.235';
+	private $port = 1234;
 	private $maxuser = 10;
 	public  $accept = array(); //连接的客户端
 	private $cycle = array(); //循环连接池

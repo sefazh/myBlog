@@ -5,14 +5,21 @@
         <!--第一篇 开始-->
         <div class="article">
             <div class="article_head">
-                <h1><a href="">PHP 7.0.0正式版发布了</a></h1>
-                <div class="article_meta"><span>作者：王赛</span> •<time>日期：2015年12月4日</time></div>
+                <h1><a href="">WebSocket Test</a></h1>
+                <!--<div class="article_meta"><span>作者：王赛</span> •<time>日期：2015年12月4日</time></div>-->
             </div>
             <div class="article_media">
 
                 <ul class="window list-unstyled">
                     <!--msg start-->
                     <!--<li class="msg-li">
+                        <div class="msg-head">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </div>
+                        <div class="msg-content">msg-content</div>
+                    </li>
+
+                    <li class="msg-li my">
                         <div class="msg-head">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
@@ -26,10 +33,10 @@
             </div>
             <div class="article_foot clearfix">
                 <div class="shoutbox">
-                    <div class="col-md-10">
+                    <div class="col-xs-10">
                         <textarea name="text_content" id="text_content" cols="30" rows="3" maxlength="80" placeholder="说点什么..." class="form-control"></textarea>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <input type="button" value="Enter" class="btn btn-default btn-block">
                     </div>
                 </div>
@@ -44,7 +51,7 @@
         <div class="widget">
             <h4 class="title">公告</h4>
             <div class="widget_content">
-                <p>qwertyuiop</p>
+                <p>WebSocket protocol 是HTML5一种新的协议。它实现了浏览器与服务器全双工通信(full-duplex)。一开始的握手需要借助HTTP请求完成握手。</p>
                 <p>PHP 7.0.0正式版发布了</p>
             </div>
         </div>
@@ -91,6 +98,8 @@
     var isConnect = false;
     var socket;
 
+    var user = Math.random();
+
     $(function(){
         initWebSocket();
         $('.shoutbox .col-md-2 .btn').bind('click',function() {
@@ -131,7 +140,7 @@
             };
 
             socket.onclose = function(evt) {
-
+                console.log('websocket 链接关闭');
             };
         }
         catch(ex) {
@@ -142,6 +151,7 @@
     /* 显示信息 */
     function addMsg(data) {
         data = JSON.parse(data);
+        if(!data.text) return false;
         var li = createMsgLi(data.text);
         var msg_window = $('.window');
         li.appendTo(msg_window);
@@ -150,7 +160,13 @@
 
     /* 生成消息节点 */
     function createMsgLi(data) {
+        var index = data.indexOf('--');
+        var poster = data.substring(0, index);
+        data = data.substr(index+2);
+
         var li = $('<li>').addClass('msg-li');
+        if(poster == user) li.addClass('my');
+
         var head = $('<div>').addClass('msg-head');
         $('<span>').addClass('glyphicon glyphicon-user').appendTo(head);
         var content = $('<div>').addClass('msg-content').html(data);
@@ -165,7 +181,7 @@
             alert('不能发送空消息');
         }else{
             if(isConnect) {
-                socket.send($('#text_content').val());
+                socket.send(user + "--" + msg);
             }
         }
         $('#text_content').val('');

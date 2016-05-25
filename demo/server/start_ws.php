@@ -1,7 +1,7 @@
 <?php
 require('class_ws.php');
 set_time_limit(0);
-$ws = new Ws('127.0.0.1', '8090', 10);
+$ws = new Ws('172.18.14.235', '1234', 10);
 $ws->function['add'] = 'user_add_callback';
 $ws->function['send'] = 'send_callback';
 $ws->function['close'] = 'close_callback';

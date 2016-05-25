@@ -21,9 +21,9 @@ body { background: #ebebeb; font-family: '微软雅黑';}
 .article .article_foot .tablist a { margin-left: 8px; display: inline-block; text-decoration: none; color: #999999;}
 
 /* 阅读全文按钮 */
-.article .article_link a.btn { color: #333;}
-a.btn { transition: background 0.5s;}
-body .container a.btn:hover {
+.article .article_link .btn { color: #333;}
+.btn { transition: background 0.5s;}
+body .container .btn:hover {
     color: #ffffff;
     background: #5F82BF;
     border: #5F82BF solid 1px;
@@ -45,7 +45,7 @@ h4.title { margin-bottom: 20px; padding-bottom: 7px; position: relative; border-
 
 /*Room*/
 .article .article_foot .shoutbox .col-md-2 { padding-left: 0;}
-.article .article_foot .shoutbox .btn-block { height: 72px; margin: 2px 0;}
+.article .article_foot .shoutbox .btn-block { height: 72px; margin: 1px 0;}
 #text_content { resize: none;}
 
 .article .article_media .window { border: #9c9c9c solid 1px; width: 100%; height: 500px; padding: 25px; border-radius: 5px; overflow: scroll; overflow-x: hidden;}
@@ -64,6 +64,17 @@ h4.title { margin-bottom: 20px; padding-bottom: 7px; position: relative; border-
     position: absolute;
     left: -5px;
     z-index: 999;
+}
+/* my */
+.article .article_media .window .msg-li.my .msg-head { float: right; margin: 0 0 0 12px;}
+.article .article_media .window .msg-li.my .msg-content { float: right; background-color: #5F82BF; color: #fff; border: #5F82BF solid 1px;}
+.article .article_media .window .msg-li.my .msg-content:before {
+    border-bottom: #5F82BF solid 1px;
+    border-left: #5F82BF solid 1px;
+    background: #5F82BF;
+    transform: rotate(225deg);
+    left: -3px;
+    margin-left: 100%;
 }
 
 /*自定义滚动条样式，仅webkit内核的浏览器有效*/

@@ -9,7 +9,7 @@ use Think\Controller;
 
 class WsController extends Controller
 {
-    private $host = '127.0.0.1';
+    private $host = '172.18.14.235';
     private $port = 8090;
     private $maxuser = 10;
     public  $accept = array(); //连接的客户端
@@ -22,6 +22,7 @@ class WsController extends Controller
     public $function = array();
     //Constructor
     function __construct($host, $port, $max) {
+        parent::__construct();
         $this->host = $host;
         $this->port = $port;
         $this->maxuser = $max;

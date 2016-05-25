@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
     <title>myblog2</title>
     <!-- bootstrap start -->
     <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
@@ -18,6 +19,8 @@
     <!-- bootstrap end -->
     <link rel="stylesheet" href="/Public/css/style.css">
 	<link rel="stylesheet" href="/Public/css/test.css">
+	<link rel="stylesheet" href="/Public/css/common.css">
+    <script type="text/javascript" src="/Public/js/common.js"></script>
 </head>
 <body>
 <div class="toolbar">
@@ -26,20 +29,20 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><i class="icon-github"></i></a>
+                    <a class="navbar-brand" href="/home/index/index"><i class="icon-globe icon-2x col-xs-1"></i>SefaZh</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <li class="<?php echo ($con1); ?>"><a href="/home/index/index">首页</a></li>
+                        <li class="<?php echo ($con2); ?>"><a href="/home/blog/index">列表</a></li>
+                        <li class="<?php echo ($con3); ?>"><a href="#contact">标签云</a></li>
+                        <li class="dropdown <?php echo ($con4); ?>">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">其他 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#Action">Action</a></li>
                                 <li><a href="#">Another action</a></li>
@@ -63,20 +66,28 @@
         </nav>
     </div>
 </div>
+<div class="blank" style="width: 100%; height: 51px;"></div>
 <div class="main_body">
 <div class="container">
     <div class="main col-md-8">
         <!--第一篇 开始-->
         <div class="article">
             <div class="article_head">
-                <h1><a href="">PHP 7.0.0正式版发布了</a></h1>
-                <div class="article_meta"><span>作者：王赛</span> •<time>日期：2015年12月4日</time></div>
+                <h1><a href="">WebSocket Test</a></h1>
+                <!--<div class="article_meta"><span>作者：王赛</span> •<time>日期：2015年12月4日</time></div>-->
             </div>
             <div class="article_media">
 
                 <ul class="window list-unstyled">
                     <!--msg start-->
                     <!--<li class="msg-li">
+                        <div class="msg-head">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </div>
+                        <div class="msg-content">msg-content</div>
+                    </li>
+
+                    <li class="msg-li my">
                         <div class="msg-head">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
@@ -90,10 +101,10 @@
             </div>
             <div class="article_foot clearfix">
                 <div class="shoutbox">
-                    <div class="col-md-10">
+                    <div class="col-xs-10">
                         <textarea name="text_content" id="text_content" cols="30" rows="3" maxlength="80" placeholder="说点什么..." class="form-control"></textarea>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <input type="button" value="Enter" class="btn btn-default btn-block">
                     </div>
                 </div>
@@ -108,7 +119,7 @@
         <div class="widget">
             <h4 class="title">公告</h4>
             <div class="widget_content">
-                <p>qwertyuiop</p>
+                <p>WebSocket protocol 是HTML5一种新的协议。它实现了浏览器与服务器全双工通信(full-duplex)。一开始的握手需要借助HTTP请求完成握手。</p>
                 <p>PHP 7.0.0正式版发布了</p>
             </div>
         </div>
@@ -151,9 +162,11 @@
 </div>
 </div>
 <script type="text/javascript">
-    var host = "ws://127.0.0.1:1144";
+    var host = "<?php echo ($host); ?>";
     var isConnect = false;
     var socket;
+
+    var user = Math.random();
 
     $(function(){
         initWebSocket();
@@ -195,7 +208,7 @@
             };
 
             socket.onclose = function(evt) {
-
+                console.log('websocket 链接关闭');
             };
         }
         catch(ex) {
@@ -206,6 +219,7 @@
     /* 显示信息 */
     function addMsg(data) {
         data = JSON.parse(data);
+        if(!data.text) return false;
         var li = createMsgLi(data.text);
         var msg_window = $('.window');
         li.appendTo(msg_window);
@@ -214,7 +228,13 @@
 
     /* 生成消息节点 */
     function createMsgLi(data) {
+        var index = data.indexOf('--');
+        var poster = data.substring(0, index);
+        data = data.substr(index+2);
+
         var li = $('<li>').addClass('msg-li');
+        if(poster == user) li.addClass('my');
+
         var head = $('<div>').addClass('msg-head');
         $('<span>').addClass('glyphicon glyphicon-user').appendTo(head);
         var content = $('<div>').addClass('msg-content').html(data);
@@ -229,7 +249,7 @@
             alert('不能发送空消息');
         }else{
             if(isConnect) {
-                socket.send($('#text_content').val());
+                socket.send(user + "--" + msg);
             }
         }
         $('#text_content').val('');
@@ -237,6 +257,6 @@
 
 </script>
 
-
+<a href="#" onclick="gotoTop(0.05, 10);return false;" class="totop"></a>
 </body>
 </html>

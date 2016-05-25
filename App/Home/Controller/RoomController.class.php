@@ -13,7 +13,7 @@ use Think\Controller;
 
 class RoomController extends Controller
 {
-    private $ip = '127.0.0.1';
+    private $ip = '172.18.14.235';
     private $port = 8090;
     
     public function index() {
